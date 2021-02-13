@@ -33,7 +33,7 @@ const loginUser = ({ email, password }) => {
   );
 };
 
-const getUser = (token) => {
+const getUser = (token, cb) => {
   APIService.request(
     {
       url: `${APIConstants.API_HOST}${APIConstants.AuthConstants.auth}`,
@@ -46,13 +46,10 @@ const getUser = (token) => {
     },
     (err, data) => {
       if (err) {
-        return console.error(err);
+        return cb(err);
       }
       if (data) {
-        if (!data.success) {
-          return window.alert(data.message);
-        }
-        console.log(data);
+        cb(null, data);
       }
     }
   );

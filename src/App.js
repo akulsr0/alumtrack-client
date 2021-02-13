@@ -2,11 +2,15 @@ import AppRoute from './routes';
 import { Router } from 'react-router-dom';
 import history from './navigation/History';
 
+import AppContext from './contexts';
+
 function App() {
   return (
-    <Router history={history}>
-      <AppRoute />
-    </Router>
+    <AppContext>
+      <Router history={history}>
+        <AppRoute />
+      </Router>
+    </AppContext>
   );
 }
 
