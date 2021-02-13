@@ -33,7 +33,33 @@ const loginUser = ({ email, password }) => {
   );
 };
 
+const getUser = (token) => {
+  APIService.request(
+    {
+      url: `${APIConstants.API_HOST}${APIConstants.AuthConstants.auth}`,
+      method: APIConstants.APIMethods.GET,
+      headers: {
+        'x-auth-token': token,
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
+    },
+    (err, data) => {
+      if (err) {
+        return console.error(err);
+      }
+      if (data) {
+        if (!data.success) {
+          return window.alert(data.message);
+        }
+        console.log(data);
+      }
+    }
+  );
+};
+
 const UserServiceAPI = {
   loginUser,
+  getUser,
 };
 export default UserServiceAPI;
