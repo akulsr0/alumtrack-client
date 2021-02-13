@@ -1,8 +1,12 @@
+import AppRoute from './routes';
+import { Router } from 'react-router-dom';
+import history from './navigation/History';
+
 function App() {
   return (
-    <div>
-      <h1>AlumTrack </h1>
-    </div>
+    <Router history={history}>
+      <AppRoute />
+    </Router>
   );
 }
 
