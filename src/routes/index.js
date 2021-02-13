@@ -11,8 +11,12 @@ export default function AppRoute() {
   return (
     <>
       <Route exact path={RouterConstants.routes.ENTRY} component={Entry} />
-      <Route path={RouterConstants.routes.LOGIN} component={Login} />
-      <Route path={RouterConstants.routes.REGISTER} component={Register} />
+      <Route exact path={RouterConstants.routes.LOGIN} component={Login} />
+      <Route
+        exact
+        path={RouterConstants.routes.REGISTER}
+        component={Register}
+      />
     </>
   );
 }

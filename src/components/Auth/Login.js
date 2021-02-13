@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { get } from 'lodash';
 
 import banner from '../../assets/Illustrations/three_alumni.png';
-import Navigation from '../../navigation';
 
-export default function Login() {
-  const goToRegister = () => {
-    Navigation.goToRegister();
-  };
+export default function Login({ onClickRegister, onClickLogin }) {
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
   return (
     <div>
@@ -24,25 +23,33 @@ export default function Login() {
             <input
               type='email'
               placeholder='Email'
-              className='h-10 bg-gray-200 rounded px-2'
+              className='h-10 bg-gray-200 outline-none rounded px-2'
+              ref={emailRef}
             />
             <input
               type='password'
               placeholder='Password'
-              className='h-10 bg-gray-200 mt-2 rounded px-2'
+              className='h-10 bg-gray-200 mt-2 outline-none rounded px-2'
+              ref={passwordRef}
             />
 
             <button
               type='button'
-              className='w-full h-10 bg-blue-500 mt-4 rounded text-white font-bold'
+              className='w-full h-10 bg-blue-500 mt-4 rounded focus:outline-none outline-none text-white font-bold'
+              onClick={() => {
+                onClickLogin(
+                  get(emailRef, 'current.value', ''),
+                  get(passwordRef, 'current.value', '')
+                );
+              }}
             >
               Login
             </button>
 
             <button
               type='button'
-              className='w-full h-10 bg-white rounded border-2 text-blue-500 font-bold border-blue-500 mt-2'
-              onClick={goToRegister}
+              className='w-full h-10 bg-white rounded focus:outline-none outline-none border-2 text-blue-500 font-bold border-blue-500 mt-2'
+              onClick={onClickRegister}
             >
               Register
             </button>

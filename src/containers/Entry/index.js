@@ -10,6 +10,7 @@ export default function Entry() {
   useEffect(() => {
     const token = UserService.Client.getUserToken();
     if (token) {
+      console.log({ token });
     } else {
       Navigation.goToLogin();
     }

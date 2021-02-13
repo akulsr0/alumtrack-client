@@ -2,7 +2,7 @@ import React from 'react';
 
 import banner from '../../assets/Illustrations/three_alumni.png';
 
-export default function Register() {
+export default function Register({ goToLogin }) {
   return (
     <div>
       <div className='w-screen min-h-screen bg-blue-400 flex flex-col lg:flex-row items-center px-6'>
@@ -19,31 +19,31 @@ export default function Register() {
             <input
               type='text'
               placeholder='Name'
-              className='h-10 bg-gray-200 rounded px-2'
+              className='h-10 bg-gray-200 outline-none rounded px-2'
             />
             <input
               type='email'
               placeholder='Email'
-              className='h-10 bg-gray-200 mt-2 rounded px-2'
+              className='h-10 bg-gray-200 mt-2 outline-none rounded px-2'
             />
             <div className='flex items-center mt-2'>
-              <label for=''>🇮🇳&nbsp;&nbsp;+91</label>
+              <label htmlFor=''>🇮🇳&nbsp;&nbsp;+91</label>
               <input
                 type='number'
                 pattern='[0-9]{10}'
                 placeholder='Mobile Number'
-                className='flex-1 h-10 bg-gray-200 rounded ml-2 px-2'
+                className='flex-1 h-10 bg-gray-200 outline-none rounded ml-2 px-2'
               />
             </div>
             <input
               type='password'
               placeholder='Password'
-              className='h-10 bg-gray-200 mt-2 rounded px-2'
+              className='h-10 bg-gray-200 mt-2 outline-none rounded px-2'
             />
             <input
               type='password'
               placeholder='Confirm Password'
-              className='h-10 bg-gray-200 mt-2 rounded px-2'
+              className='h-10 bg-gray-200 mt-2 outline-none rounded px-2'
             />
             <button
               type='button'
@@ -52,12 +52,12 @@ export default function Register() {
               Register
             </button>
             <hr className='mt-4' />
-            <a
-              href='/'
+            <p
               className='text-center text-blue-500 font-semibold cursor-pointer mt-6'
+              onClick={goToLogin}
             >
               Already have an account?
-            </a>
+            </p>
           </div>
         </div>
       </div>
