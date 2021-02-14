@@ -3,6 +3,7 @@ import { get } from 'lodash';
 import UserServiceClient from './UserServiceClient';
 import APIService from '../APIService';
 import APIConstants from '../../constants/API/index';
+import Navigation from '../../navigation';
 
 const loginUser = ({ email, password }) => {
   APIService.request(
@@ -28,6 +29,7 @@ const loginUser = ({ email, password }) => {
         }
         const token = get(data, 'token');
         UserServiceClient.setUserToken(token);
+        Navigation.goToDashboard();
       }
     }
   );

@@ -1,29 +1,22 @@
 import React, { useContext, useEffect } from 'react';
+import { get } from 'lodash';
 import Loading from '../../components/Loading';
 
 import EntryStyles from '../../styles/Entry';
 
-import UserService from '../../services/UserService';
-import Navigation from '../../navigation';
 import { UserContext } from '../../contexts/UserContext';
+import AuthService from '../../services/AuthService';
+import Navigation from '../../navigation';
 
 export default function Entry() {
   const { setUser } = useContext(UserContext);
   useEffect(() => {
-    const token = UserService.Client.getUserToken();
-    if (token) {
-      UserService.API.getUser(token, (err, data) => {
-        if (err) {
-          console.error(err);
-        }
-        if (data) {
-          setUser(data.user);
-          Navigation.goToDashboard();
-        }
-      });
-    } else {
-      Navigation.goToLogin();
-    }
+    AuthService.checkAuth((err, data) => {
+      if (data) {
+        setUser(get(data, 'user'));
+        Navigation.goToDashboard();
+      }
+    });
   }, []);
   return (
     <div style={EntryStyles.entryLoading}>

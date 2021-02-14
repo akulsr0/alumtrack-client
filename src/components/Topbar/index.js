@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import UserService from '../../services/UserService';
 
 export default function Topbar({ user }) {
   const navMobile = useRef();
@@ -11,6 +12,10 @@ export default function Topbar({ user }) {
       navMobile.current.classList.value =
         'w-full h-full z-50 transition fixed top-0 left-0 flex flex-row';
     }
+  };
+
+  const logoutUser = () => {
+    UserService.Client.logoutUser();
   };
 
   return (
@@ -54,6 +59,12 @@ export default function Topbar({ user }) {
             </li>
             <li className='text-xl mt-2 font-bold text-gray-900'>
               ℹ️&nbsp;&nbsp;&nbsp;About
+            </li>
+            <li
+              className='text-xl mt-2 font-bold text-gray-900'
+              onClick={logoutUser}
+            >
+              🚪&nbsp;&nbsp;&nbsp;Logout
             </li>
           </ul>
         </div>
